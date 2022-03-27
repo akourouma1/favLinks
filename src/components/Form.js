@@ -4,25 +4,26 @@ class Form extends Component {
     constructor(props) {
         super(props);
         
-        /*TODO - set initial state for link name and URL */
-        this.state = {
-            name:"",
-            URL:""
-        }
+        /*
+            TODO - set initial state for link name and URL
+        */
+       this.state={
+           name:'',
+           URL: ''
+       }
     }
 
-    handleChange = (event) => {
-        /*TODO - Logic for changing state based on form changes*/
-        this.setState({
-            name: event.target.value,
-        })
-    }
+    handleChange = event => {
+        /*
+            TODO - Logic for changing state based on form changes
+        */
+      const {name, value} = event.target
+      this.setState({
+          [name]: value
+      })
 
-    urlChange = (event) => {
 
-        this.setState({
-            URL: event.target.value,
-        })
+
     }
 
     onFormSubmit = (event) => {
@@ -33,27 +34,30 @@ class Form extends Component {
             TODO - Logic for calling props to handle submission and setting state changes
         */
        this.props.handleSubmit(this.state)
+       this.setState({
+           name:'',
+           URL:''
+       })
+
 
     }
 
     render() {
+        
 
         return(
-            <form onSubmit={this.onFormSubmit}>
+            <form>
                 {/* TODO - Logic for returning a form element with labels and inputs for link name and URL */}
-                <label for="name">Name</label>
-                <input
-                    type="text"
-                    value={this.state.name}
-                    onChange={this.handleChange}
-                />
-                <label for="url">URL</label>
-                <input
-                    type="text"
-                    value={this.state.URL}
-                    onChange={this.urlChange}
-                />
-                <button type="submit">Submit</button>
+                <label for="link">Link Name: </label>
+                <td></td>
+                <input type="text" id="name" name="name" value={this.state.name} onChange={(event) =>this.handleChange(event)} />
+                <td></td>
+                <label for="url">URL: </label>
+                <td></td>
+                <input type="text" id="url" name="URL" value={this.state.URL} onChange={this.handleChange} />
+                <td></td>
+                <input type="submit" value="Submit" onClick={this.onFormSubmit} />
+
             </form>
         )
     
